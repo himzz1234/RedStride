@@ -4,10 +4,10 @@ import { MdBarChart } from "react-icons/md";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 
 interface Props {
-  title: String;
-  icon: String;
-  value: String;
-  color: String;
+  title: string;
+  icon: string;
+  value: string;
+  color: string;
 }
 
 const PriceInfoCard = ({ title, icon, value, color }: Props) => {

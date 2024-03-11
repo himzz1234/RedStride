@@ -1,3 +1,5 @@
+import { Product } from "@/types";
+
 const Notification = {
   WELCOME: "WELCOME",
   CHANGE_OF_STOCK: "CHANGE_OF_STOCK",
@@ -35,9 +37,12 @@ export function findAverage(priceList: any) {
   return averagePrice;
 }
 
-export function getEmailNotifType(scrapedProduct, currentProduct) {
+export function getEmailNotifType(
+  scrapedProduct: Product,
+  currentProduct: Product
+) {
   const lowestPrice = Math.min(
-    currentProduct.priceHistory.map((item) => Number(item.price))
+    ...currentProduct.priceHistory.map((item) => Number(item.price))
   );
 
   if (scrapedProduct.currentPrice < lowestPrice) {

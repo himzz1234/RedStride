@@ -54,6 +54,7 @@ export async function scrapeAmazonProduct(url: string) {
       currency: String(currency),
       reviewsCount: 0,
       desc,
+      priceHistory: [],
       details: details.join("\n"),
       lowestPrice: currentPrice || originalPrice,
       averagePrice: originalPrice || currentPrice,

@@ -6,6 +6,7 @@ import Product from "../models/product.model";
 import { findAverage } from "../utils";
 import { revalidatePath } from "next/cache";
 import { generateEmailBody, sendEmail } from "../nodemailer";
+import { DatedPrice, User } from "@/types";
 
 export async function scrapeAndStoreProduct(productUrl: string) {
   if (!productUrl) return;
@@ -31,7 +32,7 @@ export async function scrapeAndStoreProduct(productUrl: string) {
         ...scrapedProduct,
         priceHistory: updatedPriceHistory,
         lowestPrice: Math.min(
-          updatedPriceHistory.map((item) => Number(item.price))
+          updatedPriceHistory.map((item: DatedPrice) => Number(item.price))
         ),
         averagePrice: findAverage(updatedPriceHistory),
       };
@@ -81,7 +82,9 @@ export async function addUserEmailToProduct(
 
     if (!product) return;
 
-    const index = product.users.findIndex((user) => user.email === userEmail);
+    const index = product.users.findIndex(
+      (user: User) => user.email === userEmail
+    );
 
     if (index == -1) {
       product.users.push({ email: userEmail });

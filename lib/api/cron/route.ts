@@ -3,6 +3,7 @@ import { connectToDB } from "@/lib/mongoose";
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer";
 import { scrapeAmazonProduct } from "@/lib/scraper";
 import { findAverage, getEmailNotifType } from "@/lib/utils";
+import { DatedPrice } from "@/types";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -28,7 +29,7 @@ export async function GET() {
           ...scrapedProduct,
           priceHistory: updatedPriceHistory,
           lowestPrice: Math.min(
-            updatedPriceHistory.map((item) => Number(item.price))
+            updatedPriceHistory.map((item: DatedPrice) => Number(item.price))
           ),
           averagePrice: findAverage(updatedPriceHistory),
         };
