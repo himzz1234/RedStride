@@ -29,7 +29,7 @@ export async function GET() {
           ...scrapedProduct,
           priceHistory: updatedPriceHistory,
           lowestPrice: Math.min(
-            updatedPriceHistory.map((item: DatedPrice) => Number(item.price))
+            ...updatedPriceHistory.map((item: DatedPrice) => Number(item.price))
           ),
           averagePrice: findAverage(updatedPriceHistory),
         };
