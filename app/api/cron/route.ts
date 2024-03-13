@@ -65,7 +65,6 @@ export async function GET() {
 
     return NextResponse.json({
       message: "OK",
-      data: updatedProducts,
     });
   } catch (error) {
     throw new Error(`Error in GET:${error}`);
